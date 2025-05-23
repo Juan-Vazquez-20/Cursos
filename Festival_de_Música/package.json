@@ -1,0 +1,27 @@
+{
+  "name": "festivaldemusica",
+  "version": "1.0.0",
+  "description": "Aprendiendo Sass Y NPM",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch src/scss:build/css",
+    "css": "gulp css",
+    "dev": "gulp"
+
+  },
+  "keywords": [
+    "Sass",
+    "NPM",
+    "GUlP"
+  ],
+  "author": "JuanVazquez",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.89.0"
+  },
+  "devDependencies": {
+    "gulp": "^5.0.0",
+    "gulp-sass": "^6.0.1"
+  }
+}
