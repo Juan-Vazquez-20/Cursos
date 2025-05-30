@@ -1,0 +1,23 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.iconos-nosotros{
+    @include tablet{
+        @include m.grid(3,1rem);
+    }
+    
+}
+
+.icono{
+    text-align: center;
+    align-items: center center;
+    width: 100%;
+    padding: 1rem;
+    img{
+        height: 10rem;
+        
+    }
+    h3{
+        text-transform: uppercase;  
+    }
+}
