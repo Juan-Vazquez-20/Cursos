@@ -15,6 +15,11 @@
         font-size: 1.4rem;
         color: v.$blanco;
     }
+    .navegacion{
+        visibility: visible;
+        opacity: 1;
+        height: auto; 
+    }
     a{
         color: v.$blanco;
         text-decoration: none;
