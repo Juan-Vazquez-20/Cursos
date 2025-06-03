@@ -1,4 +1,7 @@
-<?php include 'templates/header.php'; ?>
+<?php 
+    require 'includes/funciones.php';
+    includeTemplate('header');
+    ?>
     <main class="contenedor seccion">
         <h1>Anuncio</h1>
     </main>
@@ -182,9 +185,8 @@
 
 
      <?php 
-// Include the header template
-include 'templates/footer.php'; 
-?>
+    includeTemplate('footer');
+    ?>
 
     <script src="build/js/bundle.min.js"></script>
   </body>

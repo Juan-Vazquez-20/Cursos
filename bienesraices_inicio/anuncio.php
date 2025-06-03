@@ -1,4 +1,7 @@
-<?php include 'templates/header.php'; ?>
+<?php 
+    require 'includes/funciones.php';
+    includeTemplate('header');
+    ?>
     <main class="contenedor seccion contenido-centrado">
       <h1>Casa en venta frente al bosque</h1>
       <picture>
@@ -44,9 +47,8 @@
     </main>
 
      <?php 
-// Include the header template
-include 'templates/footer.php'; 
-?>
+    includeTemplate('footer');
+    ?>
 
     <script src="build/js/bundle.min.js"></script>
   </body>

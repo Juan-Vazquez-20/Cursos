@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="build/css/app.css" />
   </head>
   <body>
-    <header class="header <?php echo isset($inicio) ? 'inicio' : ''; ?>">
+    <header class="header <?php echo $inicio ? 'inicio' : ''; ?>">
       <div class="contenedor contenedor-header">
         <div class="barra">
             <a href="index.php"><img
