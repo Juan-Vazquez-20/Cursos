@@ -1,36 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bienes Raices</title>
-  <link rel="stylesheet" href="build/css/app.css" />
-</head>
-
-<body>
-  <header class="header inicio">
-    <div class="contenedor contenedor-header">
-      <div class="barra">
-        <a href="/"><img src="build/img/logo.svg" alt="logotipo de Bienes Raices" class="logo" /></a>
-        <div class="mobile-menu">
-          <img src="build/img/barras.svg" alt="icono menu responsive" /> 
-
-        </div>
-        <div class="derecha">
-          <img class="dark-mode-boton" src="build/img/dark-mode.svg" alt="icono dark mode" />
-        <nav class="navegacion">
-          <a href="nosotros.html">Nosotros</a>
-          <a href="anuncios.html">Anuncios</a>
-          <a href="blog.html">Blog</a>
-          <a href="contacto.html">Contacto</a>
-        </nav>
-        </div>
-      </div>
-      <!--.barra-->
-      <h1>Ventas de Casa y Departamentos Exclusivos de Lujo</h1>
-    </div>
-  </header>
+<?php 
+$inicio = true;
+// Include the header template
+include 'templates/header.php'; 
+?>
   <main class="contenedor seccion">
     <h1>Mas sobre nosotros</h1>
     <div class="iconos-nosotros">
@@ -67,7 +39,7 @@
           <picture>
             <source srcset="build/img/anuncio1.webp" type="image/webp" />
             <source srcset="build/img/anuncio1.jpg" type="image/jpeg" />
-            <img class="icon" loading="lazy" src="build/img/anuncio1.jpg" alt="anuncio 1" />
+            <img  loading="lazy" src="build/img/anuncio1.jpg" alt="anuncio 1" />
           </picture>
           <div class="contenido-anuncio">
             <h3>Casa de Lujo en el Lago</h3>
@@ -88,14 +60,14 @@
                 <p>4</p>
               </li>
             </ul>
-            <a href="anuncios.html" class="boton boton-naranja">Ver Propiedad</a>
+            <a href="anuncios.php" class="boton boton-naranja">Ver Propiedad</a>
           </div><!--.contenido-anuncio-->
         </div><!--.anuncio-->
         <div class="anuncio">
           <picture>
             <source srcset="build/img/anuncio2.webp" type="image/webp" />
             <source srcset="build/img/anuncio2.jpg" type="image/jpeg" />
-            <img class="icon" loading="lazy" src="build/img/anuncio2.jpg" alt="anuncio 2" />
+            <img loading="lazy" src="build/img/anuncio2.jpg" alt="anuncio 2" />
           </picture>
           <div class="contenido-anuncio">
             <h3>Casa terminados de Lujo</h3>
@@ -116,14 +88,14 @@
                 <p>4</p>
               </li>
             </ul>
-            <a href="anuncios.html" class="boton boton-naranja">Ver Propiedad</a>
+            <a href="anuncios.php" class="boton boton-naranja">Ver Propiedad</a>
           </div><!--.contenido-anuncio-->
         </div><!--.anuncio-->
         <div class="anuncio">
           <picture>
             <source srcset="build/img/anuncio3.webp" type="image/webp" />
             <source srcset="build/img/anuncio3.jpg" type="image/jpeg" />
-            <img class="icon" loading="lazy" src="build/img/anuncio3.jpg" alt="anuncio 1" />
+            <img  loading="lazy" src="build/img/anuncio3.jpg" alt="anuncio 1" />
           </picture>
           <div class="contenido-anuncio">
             <h3>Casa con alberca</h3>
@@ -144,13 +116,13 @@
                 <p>4</p>
               </li>
             </ul>
-            <a href="anuncios.html" class="boton boton-naranja">Ver Propiedad</a>
+            <a href="anuncios.php" class="boton boton-naranja">Ver Propiedad</a>
           </div><!--.contenido-anuncio-->
         </div><!--.anuncio-->
       </div><!--.contenedor-anuncio-->
 
       <div class="ver-todas alinear-derecha">
-        <a href="anuncios.html" class="boton boton-verde">Ver Todas</a>
+        <a href="anuncios.php" class="boton boton-verde">Ver Todas</a>
       </div><!--.ver-todas-->
     </section>
 
@@ -160,7 +132,7 @@
         Llena el formulario de contacto y un asesor se pondrá en contacto
         contigo lo antes posible.
       </p>
-      <a href="contacto.html" class="boton boton-amarillo">Contactanos</a>
+      <a href="contacto.php" class="boton boton-amarillo">Contactanos</a>
     </section>
 
     <div class="contenedor seccion seccion-inferior">
@@ -176,7 +148,7 @@
             </picture>
           </div>  
             <div class="texto-entrada">
-              <a href="entrada.html">
+              <a href="entrada.php">
                 <h4>Terraza en el techo de tu casa</h4>
                 <p class="informacion-meta">Escrito el: <span>01/05/2025</span> por: <span>Admin</span></p>
                 <p>
@@ -195,7 +167,7 @@
             </picture>
           </div>  
             <div class="texto-entrada">
-              <a href="entrada.html">
+              <a href="entrada.php">
                 <h4>Terraza en el techo de tu casa</h4>
                 <p class="informacion-meta">Escrito el: <span>01/05/2025</span> por: <span>Admin</span></p>
                 <p>
@@ -220,17 +192,10 @@
     </div>
   </main>
 
-  <footer class="footer seccion">
-    <div class="contenedor contenedor-footer">
-      <nav class="navegacion">
-        <a href="nosotros.html">Nosotros</a>
-        <a href="anuncios.html">Anuncios</a>
-        <a href="blog.html">Blog</a>
-        <a href="contacto.html">Contacto</a>
-      </nav>
-    </div>
-    <p class="copyright">Todos los derechos reservados 2025 &copy;</p>
-  </footer>
+  <?php 
+// Include the header template
+include 'templates/footer.php'; 
+?>
 
   <script src="build/js/bundle.min.js"></script>
 </body>
