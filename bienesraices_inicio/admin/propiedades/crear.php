@@ -69,14 +69,24 @@
         
         // Validar errores
         if (empty($errores)) {
+            
+        //*subida de archivos    *//
+        // Crear carpeta
+        $carpetaImagenes = '../../imagenes/';
+        if(!is_dir($carpetaImagenes)) {
+            mkdir($carpetaImagenes);
+        }
+        // Generar un nombre unico para la imagen
+        $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+        //subir la imagen
+        move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
 
-
-        $query = "INSERT INTO propiedades(titulo, precio, descripcion, habitaciones, wc, estacionamiento, creado, vendedores_id)VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado' ,'$vendedores_id')";
+        $query = "INSERT INTO propiedades(titulo, precio,imagen, descripcion, habitaciones, wc, estacionamiento, creado, vendedores_id)VALUES ('$titulo', '$precio', '$nombreImagen','$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado' ,'$vendedores_id')";
         //echo $query;
         $resultado = mysqli_query($db, $query);
         if($resultado) {
             // Redireccionar a la pagina de propiedades
-           header('Location: /admin');
+           header('Location: /admin?resultado=1');
         } else {
             echo "Error al guardar los datos";
         }

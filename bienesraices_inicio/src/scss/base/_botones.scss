@@ -7,3 +7,12 @@
 .boton-amarillo {
     @include boton($amarillo , inline-block);
 }
+.boton-rojo {
+    @include boton($rojo , block);
+}
+.boton-verde1 {
+    @include boton($verde , block);
+}
+
+
+
