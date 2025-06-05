@@ -2,6 +2,9 @@
 // Importar la configuracion de la base de datos
     require '../../includes/config/database.php';
     $db=conectDatabase(); // Verifica la conexion a la base de datos
+
+    $consulta = "SELECT * FROM vendedores";
+    $resultado = mysqli_query($db, $consulta);
 //inicializar la variable de errores
     $errores = [];
     
@@ -16,27 +19,30 @@
 
 
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Procesar el formulario
-        $titulo = $_POST['titulo'];
-        $precio = $_POST['precio'];
-         
-        $descripcion = $_POST['descripcion'];
-        $habitaciones = $_POST['habitaciones'];
-        $wc = $_POST['wc'];
-        $estacionamiento = $_POST['estacionamiento'];
-        $vendedores_id = $_POST['vendedores_id'];
+
+
+        //sanitizar los datos
+        $titulo = mysqli_real_escape_string( $db ,filter_var($_POST['titulo'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $precio = mysqli_real_escape_string( $db ,filter_var($_POST['precio'], FILTER_SANITIZE_NUMBER_INT));
+        $descripcion = mysqli_real_escape_string( $db ,filter_var($_POST['descripcion'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $habitaciones = mysqli_real_escape_string( $db ,filter_var($_POST['habitaciones'], FILTER_SANITIZE_NUMBER_INT));
+        $wc = mysqli_real_escape_string( $db ,filter_var($_POST['wc'], FILTER_SANITIZE_NUMBER_INT));
+        $estacionamiento = mysqli_real_escape_string( $db ,filter_var($_POST['estacionamiento'], FILTER_SANITIZE_NUMBER_INT));
+        $vendedores_id = mysqli_real_escape_string( $db ,filter_var($_POST['vendedores_id'], FILTER_SANITIZE_NUMBER_INT));
+        //validar los datos
+        $creado = date('Y/m/d');
+
+        $imagen = $_FILES['imagen'];
+        //var_dump($imagen['name']);
 
        
-        // Validar campos obligatorios
+        // Validar campos obligatorios 
 
         if(!$titulo) {
             $errores[] = "El titulo es obligatorio";
         }
         if(!$precio) {
             $errores[] = "El precio es obligatorio";
-        }
-        if(!$precio) {
-            $errores[] = "La descripcion es obligatoria";
         }
         if(!$descripcion) {
             $errores[] = "La descripcion es obligatoria";
@@ -53,21 +59,28 @@
         if(!$vendedores_id) {
             $errores[] = "El vendedor es obligatorio";
         }
+        if(!$imagen['name'] || $imagen['error']) {
+            $errores[] = "La imagen es obligatoria";
+        }
+        // Validar el tamaño de la imagen
+        if($imagen['size'] > 1000000) {
+            $errores[] = "La imagen es muy pesada, debe ser menor a 1MB";
+        }
         
         // Validar errores
         if (empty($errores)) {
 
 
-        $query = "INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, vendedores_id) VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$vendedores_id')";
+        $query = "INSERT INTO propiedades(titulo, precio, descripcion, habitaciones, wc, estacionamiento, creado, vendedores_id)VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado' ,'$vendedores_id')";
         //echo $query;
         $resultado = mysqli_query($db, $query);
         if($resultado) {
             // Redireccionar a la pagina de propiedades
-           echo "Datos guardados correctamente";
+           header('Location: /admin');
         } else {
             echo "Error al guardar los datos";
         }
-    } 
+    }  
 } 
     
     
@@ -84,7 +97,7 @@
                 <?php echo $error; ?>
             </div>
         <?php endforeach; ?>
-        <form class="formulario" method="POST">
+        <form class="formulario" method="POST" enctype="multipart/form-data" action="/admin/propiedades/crear.php">
             <fieldset>
                 <legend>informacion general</legend>
                 <label for="titulo">titulo:</label>
@@ -117,9 +130,11 @@
                 <legend>Vendedor</legend>
                 <select name="vendedores_id" id="vendedores_id" value="<?php echo $vendedores_id; ?>">
                     <option value="">-- Seleccione --</option>
-                    <option value="1">Juan</option>
-                    <option value="2">Sam</option>
-                    <option value="3">Shellby</option> 
+                    <?php while($vendedor = mysqli_fetch_assoc($resultado)) : ?>
+                        <option <?php echo $vendedores_id === $vendedor['id'] ? 'selected':'';?> value="<?php echo $vendedor['id']; ?>">
+                            <!-- Concatenar nombre y apellido del vendedor -->
+                        <?php echo $vendedor ['nombre']. " " . $vendedor['apellido']; ?></option>
+                    <?php endwhile; ?>
                 </select>
             </fieldset>
 
