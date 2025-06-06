@@ -27,11 +27,12 @@ table.propiedades{
         background-color: $verde;
 
         th{
-            padding: 1rem;
-            text-align: left;
             color: $blanco;
-            font-weight: $bold;
-            text-transform: uppercase;
+            padding: 2rem;
         }
     }
+}
+.imagen-small{
+    width: 20rem;
+    
 }
