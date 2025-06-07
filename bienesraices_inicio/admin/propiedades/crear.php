@@ -1,4 +1,9 @@
 <?php 
+    require '../../includes/funciones.php';
+    $auth = isAuth();
+    if(!$auth) {
+        header('Location: /');
+    }
 // Importar la configuracion de la base de datos
     require '../../includes/config/database.php';
     $db=conectDatabase(); // Verifica la conexion a la base de datos
@@ -95,7 +100,6 @@
     
     
 
-    require '../../includes/funciones.php';
     includeTemplate('header');
     ?>
     <main class="contenedor seccion"> 

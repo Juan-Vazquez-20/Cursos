@@ -1,6 +1,10 @@
 <?php 
-  
- 
+
+    require '../includes/funciones.php';
+    $auth = isAuth();
+    if(!$auth) {
+        header('Location: /');
+    }
     //importa la base de datos
     require '../includes/config/database.php';
     $db = conectDatabase();
@@ -32,7 +36,6 @@
     }        //validar el id
     
 
-    require '../includes/funciones.php';
     includeTemplate('header');
     ?>
     <main class="contenedor seccion">
