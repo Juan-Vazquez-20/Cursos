@@ -1,0 +1,16 @@
+{
+    "name": "juan2/introduccion-phpoop_inicio",
+    "description": "apredinedo namespaces y autoload",
+    "authors": [
+        {
+            "name": "juan",
+            "email": "correo@correo.com"
+        }
+    ],
+    "require": {},
+    "autoload":{
+        "psr-4": {
+            "APP\\": "./clases"
+        }
+    }
+}
