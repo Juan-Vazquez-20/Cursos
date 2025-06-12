@@ -1,11 +1,12 @@
 <?php 
-    require '../../includes/funciones.php';
-    $auth = isAuth();
-    if(!$auth) {
-        header('Location: /');
-    }
+    require '../../includes/app.php';
+    use App\Propiedad;
+    $propiedad = new Propiedad; 
+    //debuguear($propiedad);
+
+    isAuth(); // Verifica si el usuario esta autenticado
 // Importar la configuracion de la base de datos
-    require '../../includes/config/database.php';
+    
     $db=conectDatabase(); // Verifica la conexion a la base de datos
 
     $consulta = "SELECT * FROM vendedores";
@@ -25,6 +26,9 @@
 
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+        $propiedad = new Propiedad($_POST);
+
+        $propiedad-> guardar();
 
         //sanitizar los datos
         $titulo = mysqli_real_escape_string( $db ,filter_var($_POST['titulo'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
@@ -86,7 +90,7 @@
         //subir la imagen
         move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
 
-        $query = "INSERT INTO propiedades(titulo, precio,imagen, descripcion, habitaciones, wc, estacionamiento, creado, vendedores_id)VALUES ('$titulo', '$precio', '$nombreImagen','$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado' ,'$vendedores_id')";
+       
         //echo $query;
         $resultado = mysqli_query($db, $query);
         if($resultado) {
@@ -102,7 +106,7 @@
 
     includeTemplate('header');
     ?>
-    <main class="contenedor seccion"> 
+    <main class="contenedor seccion contenido-centrado"> 
         <h1>Crear</h1>
 
         <a href="/admin" class="boton boton-verde">volve</a>

@@ -1,5 +1,4 @@
 <?php
-    require 'includes/config/database.php';
     $db = conectDatabase();
     //consultar los anuncios
     $query = "SELECT * FROM propiedades LIMIT {$limit}";  // Limit to 3 properties

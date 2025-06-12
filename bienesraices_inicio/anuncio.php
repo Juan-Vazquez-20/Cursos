@@ -1,6 +1,6 @@
 <?php
     // Importar la configuracion de la base de datos
-    require 'includes/config/database.php';
+    require 'includes/app.php';
     $db=conectDatabase(); // Verifica la conexion a la base de datos
 
     //obtener los datos de la propiedad
@@ -16,7 +16,7 @@
       header('Location: /');
     }
     //inicializar la variable de errores
-    require 'includes/funciones.php';
+    
     includeTemplate('header');
     ?>
     <main class="contenedor seccion contenido-centrado">

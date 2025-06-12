@@ -1,12 +1,8 @@
 <?php 
 
-    require '../includes/funciones.php';
-    $auth = isAuth();
-    if(!$auth) {
-        header('Location: /');
-    }
+    require '../includes/App.php';
+    isAuth();
     //importa la base de datos
-    require '../includes/config/database.php';
     $db = conectDatabase();
      //escribir el query
     $query= "SELECT * FROM propiedades";
@@ -38,7 +34,7 @@
 
     includeTemplate('header');
     ?>
-    <main class="contenedor seccion">
+    <main class="contenedor seccion centrar_contenido">
         <h1>Administrador de bienes raices</h1>
         <?php if($resultado == 1): ?>
         <p class="alerta success">Anuncio CREADO correctamente</p>
@@ -67,7 +63,7 @@
                     <tr>
                         <td><?php echo $propiedad['id']; ?></td>
                         <td><?php echo $propiedad['titulo']; ?></td>
-                        <td>$<?php echo number_format($propiedad['precio']); ?></td>
+                        <td><?php echo number_format($propiedad['precio']); ?></td>
                         <td>
                             <img src="/imagenes/<?php echo $propiedad['imagen']; ?>" class="imagen-tabla" alt="Imagen de la propiedad">
                         </td>

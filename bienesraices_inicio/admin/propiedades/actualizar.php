@@ -1,9 +1,6 @@
 <?php 
     require '../../includes/funciones.php';
-    $auth = isAuth();
-    if(!$auth) {
-        header('Location: /');
-    }
+    isAuth(); // Verifica si el usuario esta autenticado
       
     $id = $_GET['id'] ?? null;
     $id = filter_var($id, FILTER_VALIDATE_INT);

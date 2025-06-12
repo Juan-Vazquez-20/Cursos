@@ -1,6 +1,6 @@
 <?php 
 
-    require 'includes/config/database.php';
+    require 'includes/app.php';
     $db=conectDatabase();
 
     $errores = [];
@@ -46,7 +46,7 @@
     
     }
 
-    require 'includes/funciones.php';
+
     includeTemplate('header');
     ?>
     <main class="contenedor seccion contenido-centrado">
