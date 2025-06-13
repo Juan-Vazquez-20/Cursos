@@ -1,5 +1,5 @@
 <?php 
-    require '../../includes/funciones.php';
+    require '../../includes/App.php';
     isAuth(); // Verifica si el usuario esta autenticado
       
     $id = $_GET['id'] ?? null;
@@ -8,7 +8,7 @@
         header('Location: /admin');
     }
 // Importar la configuracion de la base de datos
-    require '../../includes/config/database.php';
+    
     $db=conectDatabase(); // Verifica la conexion a la base de datos
 
     //obtener los datos de la propiedad
@@ -119,9 +119,6 @@
     }  
 } 
     
-    
-
-    require '../../includes/funciones.php';
     includeTemplate('header');
     ?>
     <main class="contenedor seccion"> 
