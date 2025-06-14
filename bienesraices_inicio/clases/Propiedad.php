@@ -23,7 +23,7 @@ class Propiedad{
     public $vendedores_id;
 
     public function __construct($args = []){
-    $this->id = $args['id'] ?? null;
+    $this->id = $args['id'] ?? '';
     $this->titulo = $args['titulo'] ?? '';
     $this->precio = $args['precio'] ?? '';
     $this->imagen = $args['imagen'] ?? '';
@@ -32,7 +32,7 @@ class Propiedad{
     $this->wc = $args['wc'] ?? '';
     $this->estacionamiento = $args['estacionamiento'] ?? '';
     $this->creado = date('Y/m/d');
-    $this->vendedores_id = $args['vendedores_id'] ?? '';
+    $this->vendedores_id = $args['vendedores_id'] ?? 1;
     }
 
     public function guardar(){
@@ -97,9 +97,9 @@ class Propiedad{
         if(!$this->estacionamiento){
             self::$errores[] = 'El numero de estacionamientos es obligatorio';
         }
-        if(!$this->vendedores_id){
-            self::$errores[] = 'Elige un vendedor';
-        }
+        //if(!$this->vendedores_id){
+          //  self::$errores[] = 'Elige un vendedor';
+        //}
         if(!$this->imagen){
             self::$errores[] = 'La imagen es obligatoria';
         }
@@ -111,5 +111,35 @@ class Propiedad{
         if($imagen){
             $this->imagen = $imagen;
         }
+    }
+
+    public static function all(){
+        $query = "SELECT * FROM propiedades";
+        $resultado= self::consultaSQL($query);
+        return $resultado;
+    }
+
+    public static function consultaSQL($query){
+        //consultar la base de datos
+        $resultado = self::$db->query($query);
+        //iterar los resultados
+        $array = [];
+        while($registro = $resultado->fetch_assoc()){
+            $array[] = self::crearObjetos($registro); // Crear una instancia de la clase Propiedad
+        } 
+        //liberar la memoria
+        $resultado->free();
+        //retornar los resultados
+        return $array;
+    }
+
+    protected static function crearObjetos($registro){
+        $objeto = new self;
+        foreach($registro as $key => $value){
+            if(property_exists($objeto, $key)){
+                $objeto->$key = $value;
+            }
+        }
+        return $objeto;
     }
 }
